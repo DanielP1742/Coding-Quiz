@@ -2,14 +2,12 @@
 const QUIZ_INFO = [
     // First question goes here.
     {
-        "heading": "Question",
-        "question": "What bear is the best bear?",
-        "answers": [
-            "Bears",
-            "Beats",
-            "Battlestar Galactica",
-            "Brown Bear",
-        ]
+        "heading0": "Question",
+        "question0": "What bear is the best bear?",
+        "answer0": "Bears",
+        "answer0": "Beats",
+        "answer0": "Battlestar Galactica",
+        "answer0": "Brown Bear"
     }, 
     // Next question goes here.
     {},
@@ -50,6 +48,7 @@ buttonStartEl.addEventListener("click", function() {
 
 function quizGameRound() {
     // TODO: do things when any of the buttons is clicked.
+    // Rotates through the QUIZ_INFO Array
     gametracker ++;
 
     headingEl.innerText = QUIZ_INFO[0+gametracker]["heading"];
@@ -58,11 +57,13 @@ function quizGameRound() {
     contentEl.innerHTML = QUIZ_INFO[0+gametracker]["question"];
     contentEl.className = "content";
 
-    
+    // TO DO NEXT: add other buttons
+
 };
 
-// The Quiz Game
+// The Initial Round of Quiz-game
 function quizStart() {
+ 
  
 
     buttonAEl.style.display = "initial";
@@ -70,12 +71,24 @@ function quizStart() {
     buttonCEl.style.display = "initial";
     buttonDEl.style.display = "initial";
 
+    headingEl.innerText = QUIZ_INFO[0]["heading0"];
+    headingEl.className = "heading";
+
+    contentEl.innerHTML = QUIZ_INFO[0]["question0"];
+    contentEl.className = "content";
+
+    buttonAEl.innerHTML = QUIZ_INFO[0]["answer0"];
+    buttonAEl.className = "buttonA"
+
+    //TO DO NEXT: Add other Buttons
+
+
     //load index 0 of object
 
     buttonAEl.addEventListener("click", quizGameRound);
     buttonBEl.addEventListener("click", quizGameRound);
-    buttonCEl.addEventListener("click", buttonClick);// update
-    buttonDEl.addEventListener("click", buttonClick);// update
+    buttonCEl.addEventListener("click", quizGameRound);
+    buttonDEl.addEventListener("click", quizGameRound);
 
     
     

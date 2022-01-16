@@ -1,7 +1,11 @@
 
+body {
+background-color: lightgray;
+}
+
 .quiz-tile {
 margin: 10em 10em 20em 10em;
-background-color: lightgray;
+background-color: white;
 border-bottom: black 3px solid;
 border-left: black 2px solid;
 border-top: black 1px solid;
@@ -10,22 +14,59 @@ border-right: black 1px solid;
 
 h2 {
 text-align: center;
-font-family: Arial, Helvetica, sans-serif;  
+font-family: 'Courier New', 'Arial';
 border-bottom: 1px black solid; 
+font-weight: bold;
 }
 
 p {
 text-align: center;
-font-family: Arial, Helvetica, sans-serif;
+font-family: 'Courier New', 'Arial';
 font-size: 1.2em;
 }
 
-button {
-    background-color: white;
-    color: black;
+#start-quiz {
+    background-color: green;
+    color: white;
     font-size: 1.2em;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', 'Arial';
     position: relative;
     left: 20em;
     margin-bottom: 1em;
 }
+
+#buttonA {
+   background-color: white;
+   color: back;
+   font-size: 1.2em;
+   font-family: 'Courier New', 'Arial';
+   position: relative;
+   margin: 1em 1em 1em 1em; 
+}
+
+#buttonB {
+    background-color: white;
+    color: back;
+    font-size: 1.2em;
+    font-family: 'Courier New', 'Arial';
+    position: relative;
+    margin: 1em 1em 1em 1em; 
+ }
+
+ #buttonC {
+    background-color: white;
+    color: back;
+    font-size: 1.2em;
+    font-family: 'Courier New', 'Arial';
+    position: relative;
+    margin: 1em 1em 1em 1em; 
+ }
+
+ #buttonD {
+    background-color: white;
+    color: back;
+    font-size: 1.2em;
+    font-family: 'Courier New', 'Arial';
+    position: relative;
+    margin: 1em 1em 1em 1em; 
+ }
