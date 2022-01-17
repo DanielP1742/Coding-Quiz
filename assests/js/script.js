@@ -1,18 +1,69 @@
 // It's always good to put constant information at the top of file.
 const QUIZ_INFO = [
-    // First question goes here.
+    // First Round Index = 0
     {
-        "heading0": "Question",
-        "question0": "What bear is the best bear?",
-        "answer0": "Bears",
-        "answer0": "Beats",
-        "answer0": "Battlestar Galactica",
-        "answer0": "Brown Bear"
+        "heading": "Question 1",
+        "question": "Commonly used data types in JavaScript Do NOT Include:",
+        "answerA": "Strings",
+        "answerB": "Booleans",
+        "answerC": "Alerts", // this is the answer
+        "answerD": "Numbers",
     }, 
-    // Next question goes here.
-    {},
-    // Etc.
-    {}, 
+    // Second Round Index = 1
+    { 
+    "heading": "Question 2",
+    "question": "String values must be enclosed with _______ when being assigned variables.",
+    "answerA": "Commas",
+    "answerB": "Quotes", // this is the answer
+    "answerC": "Curly Brackets",
+    "answerD": "Parethesis",
+},
+    // Third Round Index = 2
+    {  
+    "heading": "Question 3",
+    "question": "What company is credited with creating JavaScript?",
+    "answerA": "Netscape, Inc", // this is the answer
+    "answerB": "IBM", 
+    "answerC": "Microsoft Corporation",
+    "answerD": "Facebook",
+}, 
+    // Fourth Round Index = 3
+    {
+    "heading": "Question 4",
+    "question": "Around what % of webpages are written in JavaScript?",
+    "answerA": "40%", 
+    "answerB": "60%", 
+    "answerC": "70%",
+    "answerD": "90%", // this is the answer
+},
+      // Fifth Round Index = 4
+    {
+    "heading": "Question 5",
+    "question": "Arrays in JavaScript can be used to store _________.",
+    "answerA": "All of the below", // this is the answer
+    "answerB": "Numbers and Srings", 
+    "answerC": "Booleans",
+    "answerD": "Other Arrays",  
+},
+    // Sixth Round Index = 5
+    {
+        "heading": "Question 6",
+        "question": "Which of the follow is NOT a JavaScript Declaration?",
+        "answerA": "var", 
+        "answerB": "let", 
+        "answerC": "label", // this is the answer
+        "answerD": "const",  
+},
+
+    // Final Round Index = 6
+    {
+        "heading": "Final Question",
+        "question": "When did JavaScript originally become available to the public?",
+        "answerA": "1993", 
+        "answerB": "1995", // this is the answer
+        "answerC": "1998", 
+        "answerD": "2001",  
+    },
 ];
 
 // Create Event Listner for the first Button:
@@ -57,7 +108,17 @@ function quizGameRound() {
     contentEl.innerHTML = QUIZ_INFO[0+gametracker]["question"];
     contentEl.className = "content";
 
-    // TO DO NEXT: add other buttons
+    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerA"];
+    buttonAEl.className = "buttonA";
+
+    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerB"];
+    buttonAEl.className = "buttonB";
+
+    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerC"];
+    buttonAEl.className = "buttonC";
+
+    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerD"];
+    buttonAEl.className = "buttonD";
 
 };
 
@@ -65,22 +126,30 @@ function quizGameRound() {
 function quizStart() {
  
  
-
+    //Answer Buttons Become Visable
     buttonAEl.style.display = "initial";
     buttonBEl.style.display = "initial";
     buttonCEl.style.display = "initial";
     buttonDEl.style.display = "initial";
 
-    headingEl.innerText = QUIZ_INFO[0]["heading0"];
+    //Buttons load index 0 answers
+    headingEl.innerText = QUIZ_INFO[0]["heading"];
     headingEl.className = "heading";
 
-    contentEl.innerHTML = QUIZ_INFO[0]["question0"];
+    contentEl.innerHTML = QUIZ_INFO[0]["question"];
     contentEl.className = "content";
 
-    buttonAEl.innerHTML = QUIZ_INFO[0]["answer0"];
+    buttonAEl.innerHTML = QUIZ_INFO[0]["answerA"];
     buttonAEl.className = "buttonA"
 
-    //TO DO NEXT: Add other Buttons
+    buttonBEl.innerHTML = QUIZ_INFO[0]["answerB"];
+    buttonBEl.className = "buttonB"
+
+    buttonCEl.innerHTML = QUIZ_INFO[0]["answerC"];
+    buttonCEl.className = "buttonC"
+
+    buttonDEl.innerHTML = QUIZ_INFO[0]["answerD"];
+    buttonDEl.className = "buttonD"
 
 
     //load index 0 of object

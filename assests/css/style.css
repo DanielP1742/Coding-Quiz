@@ -43,6 +43,10 @@ font-size: 1.2em;
    position: relative;
    margin: 1em 1em 1em 1em; 
 }
+#buttonA:hover {
+    background-color: lightgray;
+  }
+
 
 #buttonB {
     background-color: white;
@@ -53,6 +57,10 @@ font-size: 1.2em;
     margin: 1em 1em 1em 1em; 
  }
 
+#buttonB:hover {
+    background-color: lightgray;
+  }
+
  #buttonC {
     background-color: white;
     color: back;
@@ -62,6 +70,10 @@ font-size: 1.2em;
     margin: 1em 1em 1em 1em; 
  }
 
+#buttonC:hover {
+    background-color: lightgray;
+  }
+
  #buttonD {
     background-color: white;
     color: back;
@@ -70,3 +82,7 @@ font-size: 1.2em;
     position: relative;
     margin: 1em 1em 1em 1em; 
  }
+
+#buttonD:hover {
+    background-color: lightgray;
+  }
