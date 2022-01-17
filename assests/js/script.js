@@ -119,6 +119,7 @@ function quizGameRound() {
 
     buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerD"];
     buttonAEl.className = "buttonD";
+    
 
 };
 
