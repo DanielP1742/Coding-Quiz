@@ -1,4 +1,5 @@
 // It's always good to put constant information at the top of file.
+
 const QUIZ_INFO = [
     // First Round Index = 0
     {
@@ -8,6 +9,7 @@ const QUIZ_INFO = [
         "answerB": "Booleans",
         "answerC": "Alerts", // this is the answer
         "answerD": "Numbers",
+        "correct": "Alerts"
     }, 
     // Second Round Index = 1
     { 
@@ -17,6 +19,7 @@ const QUIZ_INFO = [
     "answerB": "Quotes", // this is the answer
     "answerC": "Curly Brackets",
     "answerD": "Parethesis",
+    "correct": "Quotes"
 },
     // Third Round Index = 2
     {  
@@ -26,6 +29,7 @@ const QUIZ_INFO = [
     "answerB": "IBM", 
     "answerC": "Microsoft Corporation",
     "answerD": "Facebook",
+    "correct": "Netscape, Inc"
 }, 
     // Fourth Round Index = 3
     {
@@ -35,6 +39,7 @@ const QUIZ_INFO = [
     "answerB": "60%", 
     "answerC": "70%",
     "answerD": "90%", // this is the answer
+    "correct": "90%"
 },
       // Fifth Round Index = 4
     {
@@ -44,6 +49,7 @@ const QUIZ_INFO = [
     "answerB": "Numbers and Srings", 
     "answerC": "Booleans",
     "answerD": "Other Arrays",  
+    "correct": "All of the below"
 },
     // Sixth Round Index = 5
     {
@@ -53,6 +59,7 @@ const QUIZ_INFO = [
         "answerB": "let", 
         "answerC": "label", // this is the answer
         "answerD": "const",  
+        "correct": "label"
 },
 
     // Final Round Index = 6
@@ -62,7 +69,9 @@ const QUIZ_INFO = [
         "answerA": "1993", 
         "answerB": "1995", // this is the answer
         "answerC": "1998", 
-        "answerD": "2001",  
+        "answerD": "2001",
+        "correct": "1995"
+
     },
 ];
 
@@ -97,7 +106,7 @@ buttonStartEl.addEventListener("click", function() {
     };
 });
 
-function quizGameRound() {
+function quizGameRound(buttonThatWasClicked) {
     // TODO: do things when any of the buttons is clicked.
     // Rotates through the QUIZ_INFO Array
     gametracker ++;
@@ -111,15 +120,30 @@ function quizGameRound() {
     buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerA"];
     buttonAEl.className = "buttonA";
 
-    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerB"];
-    buttonAEl.className = "buttonB";
+    buttonBEl.innerHTML = QUIZ_INFO[0+gametracker]["answerB"];
+    buttonBEl.className = "buttonB";
 
-    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerC"];
-    buttonAEl.className = "buttonC";
+    buttonCEl.innerHTML = QUIZ_INFO[0+gametracker]["answerC"];
+    buttonCEl.className = "buttonC";
 
-    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerD"];
-    buttonAEl.className = "buttonD";
-    
+    buttonDEl.innerHTML = QUIZ_INFO[0+gametracker]["answerD"];
+    buttonDEl.className = "buttonD";
+        
+    // What is the correct answer per round?
+    //How do I make the button = the right answer?    
+    var textThatWasClicked = buttonThatWasClicked.innerHTML;
+    var theCorrectAnswerForTheQuestion = QUIZ_INFO[0+gametracker]["correct"];
+
+        if (textThatWasClicked === theCorrectAnswerForTheQuestion) {
+            //timer gets +10 Seconds
+        }else{ //timer -10 Seconds)
+        }
+
+    // does Quic-game pass in that parameter when it startes
+
+    // How does it update per round?
+
+    // If it is what then happends? If it isn't what then happens?
 
 };
 
@@ -155,11 +179,34 @@ function quizStart() {
 
     //load index 0 of object
 
-    buttonAEl.addEventListener("click", quizGameRound);
-    buttonBEl.addEventListener("click", quizGameRound);
-    buttonCEl.addEventListener("click", quizGameRound);
-    buttonDEl.addEventListener("click", quizGameRound);
+    // old code looked like this: buttonAEl.addEventListener("click", quizGameRound);
 
+    buttonAEl.addEventListener("click", function() {
+        quizGameRound(buttonAEl);
+    });
+
+    buttonBEl.addEventListener("click", function() {
+        quizGameRound(buttonBEl);
+    });
     
-    
+    // TODO: we'll get to this later
+    // buttonCEl.addEventListener("click", quizGameRound);
+    // buttonDEl.addEventListener("click", quizGameRound);    
 }
+
+function giveMeZero() {
+    return 0;
+}
+
+var something = giveMeZero();
+
+function plusFive(_____superMunchin) {
+    return _____superMunchin + 5;
+}
+
+var somethingElse = plusFive(10);
+var somethingElseAgain = plusFive(20);
+var somethingElseAgainSomuch = plusFive(30);
+// var superDontDoThis = plusFive(); // Never do this
+
+
