@@ -86,6 +86,7 @@ var buttonDEl = document.querySelector("#buttonD");
 var headingEl = document.querySelector("#heading")
 var contentEl = document.querySelector("#content")
 var gametracker = 0
+var gamescore = 0
 
 buttonAEl.style.display = "none";
 buttonBEl.style.display = "none";
@@ -111,6 +112,22 @@ function quizGameRound(buttonThatWasClicked) {
     // Rotates through the QUIZ_INFO Array
     gametracker ++;
 
+   
+    // What is the correct answer per round?
+    //How do I make the button = the right answer?    
+    var textThatWasClicked = buttonThatWasClicked.innerHTML;
+    var theCorrectAnswerForTheQuestion = QUIZ_INFO[0+gametracker-1]["correct"];
+    console.log("the text that was clicked" ,textThatWasClicked)
+    console.log("the correct answer", theCorrectAnswerForTheQuestion)
+        if (textThatWasClicked === theCorrectAnswerForTheQuestion) {
+            gamescore++;
+            
+        }else{ //timer -10 Seconds)
+        }
+        console.log("the score after submission" + gamescore)
+    // does Quic-game pass in that parameter when it startes
+    // TO DO look at the if statement if the was currect
+
     headingEl.innerText = QUIZ_INFO[0+gametracker]["heading"];
     headingEl.className = "heading";
 
@@ -129,23 +146,8 @@ function quizGameRound(buttonThatWasClicked) {
     buttonDEl.innerHTML = QUIZ_INFO[0+gametracker]["answerD"];
     buttonDEl.className = "buttonD";
         
-    // What is the correct answer per round?
-    //How do I make the button = the right answer?    
-    var textThatWasClicked = buttonThatWasClicked.innerHTML;
-    var theCorrectAnswerForTheQuestion = QUIZ_INFO[0+gametracker]["correct"];
-
-        if (textThatWasClicked === theCorrectAnswerForTheQuestion) {
-            //timer gets +10 Seconds
-        }else{ //timer -10 Seconds)
-        }
-
-    // does Quic-game pass in that parameter when it startes
-
-    // How does it update per round?
-
-    // If it is what then happends? If it isn't what then happens?
-
 };
+//end quiz game round 
 
 // The Initial Round of Quiz-game
 function quizStart() {
@@ -188,25 +190,15 @@ function quizStart() {
     buttonBEl.addEventListener("click", function() {
         quizGameRound(buttonBEl);
     });
-    
-    // TODO: we'll get to this later
-    // buttonCEl.addEventListener("click", quizGameRound);
-    // buttonDEl.addEventListener("click", quizGameRound);    
-}
 
-function giveMeZero() {
-    return 0;
-}
+    buttonCEl.addEventListener("click", function() {
+        quizGameRound(buttonCEl);
+    });
 
-var something = giveMeZero();
-
-function plusFive(_____superMunchin) {
-    return _____superMunchin + 5;
-}
-
-var somethingElse = plusFive(10);
-var somethingElseAgain = plusFive(20);
-var somethingElseAgainSomuch = plusFive(30);
-// var superDontDoThis = plusFive(); // Never do this
+    buttonDEl.addEventListener("click", function() {
+        quizGameRound(buttonDEl);
+    });
+        
+};
 
 
