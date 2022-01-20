@@ -76,6 +76,9 @@ const QUIZ_INFO = [
 ];
 
 // Create Event Listner for the first Button:
+
+var timerEL = document.querySelector("#timer")
+
 var buttonStartEl = document.querySelector("#start-quiz");
 
 var buttonAEl = document.querySelector("#buttonA");
@@ -85,73 +88,101 @@ var buttonDEl = document.querySelector("#buttonD");
 
 var headingEl = document.querySelector("#heading")
 var contentEl = document.querySelector("#content")
-var gametracker = 0
-var gamescore = 0
+
 
 buttonAEl.style.display = "none";
 buttonBEl.style.display = "none";
 buttonCEl.style.display = "none";
 buttonDEl.style.display = "none";
 
+let timeLeft = 60
+var gametracker = 0
+var gamescore = 0
 
 // Initial beginning of Game - calls the The Quiz Game Function
 buttonStartEl.addEventListener("click", function() {
     alert("Good Luck!")
 
     var gamestart = true
-
     buttonStartEl.style.display = "none";
+  
 
     if (gamestart === true){
         quizStart()
+        var gameTimer = setInterval(function() {
+            console.log(gameTimer);
+            console.log("The time left in game = " + timeLeft)
+            timeLeft--;
+            timerEL.innerText = timeLeft
+            if (timeLeft<0)  { 
+                // gameOver function
+                clearInterval(gameTimer);
+            }
+    
+        }, 1000);
     };
 });
 
 function quizGameRound(buttonThatWasClicked) {
-    // TODO: do things when any of the buttons is clicked.
-    // Rotates through the QUIZ_INFO Array
-    gametracker ++;
-
-   
-    // What is the correct answer per round?
-    //How do I make the button = the right answer?    
-    var textThatWasClicked = buttonThatWasClicked.innerHTML;
-    var theCorrectAnswerForTheQuestion = QUIZ_INFO[0+gametracker-1]["correct"];
-    console.log("the text that was clicked" ,textThatWasClicked)
-    console.log("the correct answer", theCorrectAnswerForTheQuestion)
+      
+    var textThatWasClicked = buttonThatWasClicked.innerHTML;  // text that was on the button
+    console.log(textThatWasClicked);
+    console.log(gametracker)
+    var theCorrectAnswerForTheQuestion = QUIZ_INFO[gametracker]["correct"];  // game tracker'th number of question
+    console.log(theCorrectAnswerForTheQuestion);
         if (textThatWasClicked === theCorrectAnswerForTheQuestion) {
             gamescore++;
-            
-        }else{ //timer -10 Seconds)
+            timeLeft+=10;
+        }else{ 
+            timeLeft-=10;
         }
         console.log("the score after submission" + gamescore)
-    // does Quic-game pass in that parameter when it startes
-    // TO DO look at the if statement if the was currect
 
-    headingEl.innerText = QUIZ_INFO[0+gametracker]["heading"];
+        gametracker++;
+    
+
+    headingEl.innerText = QUIZ_INFO[gametracker]["heading"];
     headingEl.className = "heading";
 
-    contentEl.innerHTML = QUIZ_INFO[0+gametracker]["question"];
+    contentEl.innerHTML = QUIZ_INFO[gametracker]["question"];
     contentEl.className = "content";
 
-    buttonAEl.innerHTML = QUIZ_INFO[0+gametracker]["answerA"];
+    buttonAEl.innerHTML = QUIZ_INFO[gametracker]["answerA"];
     buttonAEl.className = "buttonA";
 
-    buttonBEl.innerHTML = QUIZ_INFO[0+gametracker]["answerB"];
+    buttonBEl.innerHTML = QUIZ_INFO[gametracker]["answerB"];
     buttonBEl.className = "buttonB";
 
-    buttonCEl.innerHTML = QUIZ_INFO[0+gametracker]["answerC"];
+    buttonCEl.innerHTML = QUIZ_INFO[gametracker]["answerC"];
     buttonCEl.className = "buttonC";
 
-    buttonDEl.innerHTML = QUIZ_INFO[0+gametracker]["answerD"];
+    buttonDEl.innerHTML = QUIZ_INFO[gametracker]["answerD"];
     buttonDEl.className = "buttonD";
         
 };
 //end quiz game round 
 
+function quizEnd(){
+
+}// Quiz end function
+
+// ask for the initials
+// make a note of the score
+// check the local storage for any stored scores
+// if there are none, create an empty array and include the initial and the score as first element
+// if there is an array, take its value from local storage, and parse it, and push the new value into parsed array.
+// sort the array.
+// write the sorted array on top of the other list in the local storage. 
+// ask the user if they would like to play another game
+// if they say no, quit
+// if they say yes, then reinitialize all the values. and run quizstart function again
+// 
+// let timeLeft = 60
+// var gametracker = 0
+// var gamescore = 0
+
 // The Initial Round of Quiz-game
 function quizStart() {
- 
  
     //Answer Buttons Become Visable
     buttonAEl.style.display = "initial";
@@ -180,8 +211,6 @@ function quizStart() {
 
 
     //load index 0 of object
-
-    // old code looked like this: buttonAEl.addEventListener("click", quizGameRound);
 
     buttonAEl.addEventListener("click", function() {
         quizGameRound(buttonAEl);
