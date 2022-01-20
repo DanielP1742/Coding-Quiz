@@ -73,6 +73,18 @@ const QUIZ_INFO = [
         "correct": "1995"
 
     },
+    // End Index does not show
+    {
+        "heading": "Final Question",
+        "question": "When did JavaScript originally become available to the public?",
+        "answerA": "1993", 
+        "answerB": "1995", 
+        "answerC": "1998", 
+        "answerD": "2001",
+        "correct": "1995"
+
+    },
+
 ];
 
 // Create Event Listner for the first Button:
@@ -95,7 +107,7 @@ buttonBEl.style.display = "none";
 buttonCEl.style.display = "none";
 buttonDEl.style.display = "none";
 
-let timeLeft = 60
+let timeLeft = 10
 var gametracker = 0
 var gamescore = 0
 
@@ -114,10 +126,11 @@ buttonStartEl.addEventListener("click", function() {
             console.log("The time left in game = " + timeLeft)
             timeLeft--;
             timerEL.innerText = timeLeft
-            if (timeLeft<0)  { 
-                // gameOver function
+            if (timeLeft<=0)  { 
                 clearInterval(gameTimer);
+                quizEnd()
             }
+            
     
         }, 1000);
     };
@@ -158,13 +171,29 @@ function quizGameRound(buttonThatWasClicked) {
 
     buttonDEl.innerHTML = QUIZ_INFO[gametracker]["answerD"];
     buttonDEl.className = "buttonD";
-        
+
+    if (gametracker >= 7) (
+        quizEnd()
+    );
 };
 //end quiz game round 
 
 function quizEnd(){
 
-}// Quiz end function
+    headingEl.innerText = "Game Over";
+    contentEl.innerText = "Great job! Your scorce is " + timeLeft;
+
+    buttonAEl.style.display = "none";
+    buttonBEl.style.display = "none";
+    buttonCEl.style.display = "none";
+    buttonDEl.style.display = "none";
+    timerEL.style.display = "none";
+
+ 
+
+// Create Submit Button
+// Create Form initials 
+}
 
 // ask for the initials
 // make a note of the score
@@ -175,6 +204,8 @@ function quizEnd(){
 // write the sorted array on top of the other list in the local storage. 
 // ask the user if they would like to play another game
 // if they say no, quit
+
+
 // if they say yes, then reinitialize all the values. and run quizstart function again
 // 
 // let timeLeft = 60
