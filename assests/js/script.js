@@ -1,5 +1,8 @@
 // It's always good to put constant information at the top of file.
 
+// Docs at https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
+// localStorage.setItem (highScores); // The correct method signature is (keyName, keyValue).
+
 const QUIZ_INFO = [
     // First Round Index = 0
     {
@@ -98,16 +101,23 @@ var buttonBEl = document.querySelector("#buttonB");
 var buttonCEl = document.querySelector("#buttonC");
 var buttonDEl = document.querySelector("#buttonD");
 
-var headingEl = document.querySelector("#heading")
-var contentEl = document.querySelector("#content")
+var headingEl = document.querySelector("#heading");
+var contentEl = document.querySelector("#content");
 
+ var submitEL = document.querySelector("#submit");
+ var formEl = document.querySelector("#initialsForm");
+
+ var divScores = document.getElementById("divScore")
 
 buttonAEl.style.display = "none";
 buttonBEl.style.display = "none";
 buttonCEl.style.display = "none";
 buttonDEl.style.display = "none";
 
-let timeLeft = 10
+submitEL.style.display = "none";
+formEl.style.display = "none";
+
+let timeLeft = 2
 var gametracker = 0
 var gamescore = 0
 
@@ -172,16 +182,20 @@ function quizGameRound(buttonThatWasClicked) {
     buttonDEl.innerHTML = QUIZ_INFO[gametracker]["answerD"];
     buttonDEl.className = "buttonD";
 
-    if (gametracker >= 7) (
-        quizEnd()
-    );
+    if (gametracker >= 7) {
+        quizEnd() };
 };
 //end quiz game round 
 
 function quizEnd(){
 
+    var finalScore = timeLeft;
+    
     headingEl.innerText = "Game Over";
-    contentEl.innerText = "Great job! Your scorce is " + timeLeft;
+    contentEl.innerText = "Great job! Your scorce is " + finalScore + "!  Enter you initials in the form below:";
+
+    submitEL.style.display = "initial";
+    formEl.style.display = "initial";
 
     buttonAEl.style.display = "none";
     buttonBEl.style.display = "none";
@@ -189,13 +203,48 @@ function quizEnd(){
     buttonDEl.style.display = "none";
     timerEL.style.display = "none";
 
- 
+    submitEL.addEventListener("click", function() {
+      // https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+      var initials = document.getElementById("initialsForm").value
+        console.log(initials);
+        //capture the finalScore and initials and push it into the high Scores array;
 
-// Create Submit Button
-// Create Form initials 
+        // Docs at https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
+        // localStorage.setItem(highScores); // The correct method signature is (keyName, keyValue).
+        localStorage.setItem(initials, finalScore);
+
+        ///////////////////
+        // var a = { 
+        //     "foo": 42,
+        //     "bar": 123
+        // }
+        // for (var myAttributeName in a) {
+        //     console.log(myAttributeName);
+        // }
+        // That prints 42 and then 123.
+
+        ///////////////////
+
+        if (initials) { 
+            // this loop was found on https://stackoverflow.com/questions/8419354/get-html5-localstorage-keys
+            for (var [key, value] of Object.entries(localStorage)) {
+                // Lots of good examples here. https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+                var newDiv = document.createElement("div")
+                //div creation
+                
+                // Set the new div's content.
+                newDiv.innerText = `${key}, ${value}`; // (initials, finalScore);
+                divScores.appendChild(newDiv);
+
+                //for each key value set we what to create a table row....
+             
+                //create button for restarting the quizgame
+                //redeclair game variables and call function start game
+            }
+        }
+    });
 }
-
-// ask for the initials
+  
 // make a note of the score
 // check the local storage for any stored scores
 // if there are none, create an empty array and include the initial and the score as first element
