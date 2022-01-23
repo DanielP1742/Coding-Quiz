@@ -117,7 +117,7 @@ buttonDEl.style.display = "none";
 submitEL.style.display = "none";
 formEl.style.display = "none";
 
-let timeLeft = 2
+let timeLeft = 25
 var gametracker = 0
 var gamescore = 0
 
@@ -159,8 +159,6 @@ function quizGameRound(buttonThatWasClicked) {
         }else{ 
             timeLeft-=10;
         }
-        console.log("the score after submission" + gamescore)
-
         gametracker++;
     
 
@@ -213,20 +211,9 @@ function quizEnd(){
         // localStorage.setItem(highScores); // The correct method signature is (keyName, keyValue).
         localStorage.setItem(initials, finalScore);
 
-        ///////////////////
-        // var a = { 
-        //     "foo": 42,
-        //     "bar": 123
-        // }
-        // for (var myAttributeName in a) {
-        //     console.log(myAttributeName);
-        // }
-        // That prints 42 and then 123.
-
-        ///////////////////
-
         if (initials) { 
             // this loop was found on https://stackoverflow.com/questions/8419354/get-html5-localstorage-keys
+            // friend assist for this as well... a lot of this I didn't know about
             for (var [key, value] of Object.entries(localStorage)) {
                 // Lots of good examples here. https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
                 var newDiv = document.createElement("div")
@@ -236,32 +223,12 @@ function quizEnd(){
                 newDiv.innerText = `${key}, ${value}`; // (initials, finalScore);
                 divScores.appendChild(newDiv);
 
-                //for each key value set we what to create a table row....
-             
-                //create button for restarting the quizgame
-                //redeclair game variables and call function start game
+                
             }
         }
     });
 }
   
-// make a note of the score
-// check the local storage for any stored scores
-// if there are none, create an empty array and include the initial and the score as first element
-// if there is an array, take its value from local storage, and parse it, and push the new value into parsed array.
-// sort the array.
-// write the sorted array on top of the other list in the local storage. 
-// ask the user if they would like to play another game
-// if they say no, quit
-
-
-// if they say yes, then reinitialize all the values. and run quizstart function again
-// 
-// let timeLeft = 60
-// var gametracker = 0
-// var gamescore = 0
-
-// The Initial Round of Quiz-game
 function quizStart() {
  
     //Answer Buttons Become Visable
@@ -290,7 +257,7 @@ function quizStart() {
     buttonDEl.className = "buttonD"
 
 
-    //load index 0 of object
+    //This bit of genius is Andrew Jansen's assist.  Thanks buddy... 
 
     buttonAEl.addEventListener("click", function() {
         quizGameRound(buttonAEl);
